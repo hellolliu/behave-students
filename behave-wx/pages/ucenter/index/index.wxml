@@ -1,0 +1,73 @@
+<view class="container">
+  <view class="profile-info" bindtap="goLogin">
+    <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+    <view class="info">
+      <text class="name">{{userInfo.nickName}}</text>
+    </view>
+  </view>
+
+  <view class='user_area' hidden="{{userType=='student'}}">
+    <view class='user_row' bindtap='goOrder'>
+      <view class='user_row_left'>核心功能</view>
+      <!-- <image class='user_row_right' src='/static/images/goright.png'></image> -->
+    </view>
+    <view class='user_column'>
+      <view class='user_column_item' bindtap='goNewPage' data-index='1' data-route='/pages/behave/teacher/score/index'>
+        <image class='user_column_item_image' src='/static/images/pendpay.png'>
+        </image>
+        <view class='user_column_item_text'>学生评分</view>
+      </view>
+      <view class='user_column_item' bindtap='goNewPage' data-index='2' data-route='/pages/behave/teacher/task/index'>
+        <image class='user_column_item_image' src='/static/images/send.png'></image>
+        <view class='user_column_item_text'>作业管理</view>
+      </view>
+      <view class='user_column_item' bindtap='goNewPage' data-index='3' data-route='/pages/behave/teacher/studentwork/index'>
+        <image class='user_column_item_image' src='/static/images/customer.png'></image>
+        <view class='user_column_item_text'>学生作业</view>
+      </view>
+      <view class='user_column_item' bindtap='goNewPage' data-index='4' data-route='/pages/behave/teacher/curriculum/index'>
+        <image class='user_column_item_image' src='/static/images/comment.png'></image>
+        <view class='user_column_item_text'>我的课程</view>
+      </view>
+    </view>
+  </view>
+
+  <view class='separate' hidden="{{userType=='teacher'}}"></view>
+  <view class='user_area' hidden="{{userType=='teacher'}}">
+    <view class='user_row'>
+      <view class='user_row_left'>核心功能</view>
+      <!-- <image class='user_row_right' src='/static/images/goright.png'></image> -->
+    </view>
+    <view class='user_column'>
+      <view class='user_column_item' bindtap='goNewPage' data-index='5' data-route='/pages/behave/student/perform/index'>
+        <image class='user_column_item_image' src='/static/images/receive.png'></image>
+        <view class='user_column_item_text'>我的表现</view>
+      </view>
+      <view class='user_column_item' bindtap='goNewPage' data-index='6' data-route='/pages/behave/student/exercise/index'>
+        <image class='user_column_item_image' src='/static/images/comment.png'></image>
+        <view class='user_column_item_text'>我的习题</view>
+      </view>
+      <view class='user_column_item' bindtap='goNewPage' data-index='7' data-route='/pages/behave/student/schedule/index'>
+        <image class='user_column_item_image' src='/static/images/send.png'></image>
+        <view class='user_column_item_text'>我的课程表</view>
+      </view>
+    </view>
+  </view>
+   
+  <view class='separate' hidden="{{userType=='teacher'}}"></view>
+  <view class='user_area'  hidden="{{userType=='teacher'}}">
+   <view class='user_row'>
+    <view class='user_row_left'>其他功能</view>
+   </view>
+   <view class='user_column'>
+    <view class='user_column_item' bindtap='goNewPage' data-index='8' data-route='/pages/auth/register/register'>
+      <image class='user_column_item_image' src='/static/images/my.png'></image>
+      <view class='user_column_item_text'>我的信息</view>
+    </view>
+    <view class='user_column_item' bindtap=''></view>
+    <view class='user_column_item' bindtap=''></view>
+    <view class='user_column_item' bindtap=''></view>
+   </view>
+ </view>
+ <view class="logout" wx:if="{{hasLogin}}" bindtap="exitLogin">退出登录</view>
+</view>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/behave.iml" filepath="$PROJECT_DIR$/behave.iml" />
+      <module fileurl="file://$PROJECT_DIR$/behave-admin-api/behave-admin-api.iml" filepath="$PROJECT_DIR$/behave-admin-api/behave-admin-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/behave-all/behave-all.iml" filepath="$PROJECT_DIR$/behave-all/behave-all.iml" />
+      <module fileurl="file://$PROJECT_DIR$/behave-core/behave-core.iml" filepath="$PROJECT_DIR$/behave-core/behave-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/behave-db/behave-db.iml" filepath="$PROJECT_DIR$/behave-db/behave-db.iml" />
+      <module fileurl="file://$PROJECT_DIR$/behave-wx-api/behave-wx-api.iml" filepath="$PROJECT_DIR$/behave-wx-api/behave-wx-api.iml" />
+    </modules>
+  </component>
+</project>

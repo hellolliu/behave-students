@@ -1,0 +1,36 @@
+<!--pages/behave/teacher/score/index.wxml-->
+<view class="container">
+  <view class="kcap-border">
+    <view class='kcap-header'>课堂评价</view>
+    <view class='kcap-list-border' >
+      <view class='kcap-list-item' wx:for="{{scoreList}}" wx:key="index">
+        <view class='kcap-class'>
+         <text>{{item.userName}}</text> 
+         <text class='kcap-time'>({{item.addTime}})</text>
+         <text class='kcap-status'>{{item.value}}</text>   
+        </view>  
+      </view>
+      <view class='kcap-list-item'></view>
+      <view class='kcap-list-item'></view>
+      <view class='kcap-list-item'></view>
+      <view class='kcap-list-item'></view>
+      <view class='kcap-list-item'></view>
+    </view>
+  </view>
+  <view class="bottom">
+    <view class="bottom-view-pick">
+      <picker mode="date" value="{{date}}" start="2015-09-01" end="2020-09-01" bindchange="bindTimeStartChange" class="start-pick">
+        <view class="picker">
+          开始时间: {{startTime}}
+        </view>
+      </picker>
+    
+      <picker mode="date" value="{{date}}" start="2015-09-01" end="2020-09-01" bindchange="bindTimeEndChange" class="end-pick">
+        <view class="picker">
+          结束时间: {{endTime}}
+        </view>
+      </picker>
+    </view>
+    <view class="bottom-button"><button>查询</button></view>
+  </view>
+</view>

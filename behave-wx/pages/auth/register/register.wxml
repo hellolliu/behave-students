@@ -1,0 +1,33 @@
+<view class="container">
+  <view class="form-box">
+
+    <view class="form-item">
+      <input class="username" value="{{user.username}}" bindinput="bindUsernameInput" placeholder="真实姓名" placeholder-class="ppl-color" auto-focus/>
+      <image wx:if="{{ user.username.length > 0 }}" id="clear-username" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    </view>
+   
+    <view class="form-item">
+      <picker mode = 'selector' class="username" bindchange="bindPickerChange" value="{{id}}" range="{{classArray}}" range-key="name">
+        <view wx:if="{{class=='班级'}}" class="ppl-color">{{class}}</view>
+        <view wx:else>{{class}}</view>
+      </picker>
+      <image wx:if="{{ class.length > 0 && class!='班级'}}" id="clear-class" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    </view>
+    <!-- <view class="form-item">
+      <input class="password" value="{{password}}" password bindinput="bindPasswordInput" placeholder="密码" placeholder-class="ppl-color"/>
+      <image class="clear" id="clear-password" wx:if="{{ password.length > 0 }}" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    </view>
+
+    <view class="form-item">
+      <input class="password" value="{{user.confirmPassword}}" password bindinput="bindConfirmPasswordInput" placeholder="确认密码" placeholder-class="ppl-color"/>
+      <image class="clear" id="clear-confirm-password" wx:if="{{ user.confirmPassword.length > 0 }}" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    </view> -->
+
+    <view class="form-item">
+      <input class="mobile" value="{{user.mobile}}" bindinput="bindMobileInput" placeholder="手机号" placeholder-class="ppl-color"/>
+      <image wx:if="{{ user.mobile.length > 0 }}" id="clear-mobile" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+    </view>
+    <button type="primary" class="register-btn" bindtap="startRegister">确定</button>
+
+  </view>
+</view>

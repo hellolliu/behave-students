@@ -1,0 +1,83 @@
+<view class='time_head'>
+  <view>
+    <view class='time_head_l'>
+      <view class='time_head_title2'>{{class.name}}
+      </view>
+    </view>
+    <view class='time_head_r'>{{year}}</view>
+  </view>
+</view>
+<view class='cl'></view>
+<view class="con-wrap ripple {{cardRightIn?'fadeInRight':''}} {{cardLeftIn?'fadeInLeft':''}}" wx:for="{{week_kecheng}}" wx:if="{{index==currentIndex}}" wx:key="index">
+  <view class='card-box'>
+    <view class="top">
+      <view class="top-text">
+        <view>{{month}}月</view>
+      </view>
+      <view wx:for="{{item.week_day}}" wx:key="index" class="top-text">
+        <view class='{{item.k}}'>
+          <view>{{item.week}}</view>
+        </view>
+      </view>
+    </view>
+    <view style="height:940rpx;width:730rpx;display:flex;">
+      <view style="background-color:#f8f8f8;color:#666666;">
+        <view wx:for="{{times}}" wx:key="index" class="left {{item.class2}}">
+          {{item.timeStart}}
+          {{item.timeStart?'-':item.timeSlot}}
+           {{item.timeEnd}}
+        </view>
+      </view>
+      <view>
+        <view class='kebiao'>
+          <view class='kebiao_bs'>到校
+            <text class='icon iconfont icon-combinedshapecopy2'></text>
+          </view>
+        </view>
+      </view>
+      <view wx:for="{{slotMorning}}" wx:key="index">
+        <view style="width:750rpx; position: absolute;border-bottom:1rpx dashed #e9e8e8;margin-top:{{(index+1)*100+59}}rpx;box-sizing: border-box;">
+        </view>
+      </view>
+      <view>
+        <view class='kebiao kebiao2'>
+          <view class='kebiao_bs'>午餐及休息
+            <text class='icon iconfont icon-combinedshapecopy2'></text>
+          </view>
+        </view>
+      </view>
+      <view wx:for="{{slotNoon}}" wx:key="index">
+        <view style="width:750rpx; position: absolute;border-bottom:1rpx dashed #e9e8e8;margin-top:{{(index+1)*100+419}}rpx;">
+        </view>
+      </view>
+      <view>
+        <view class='kebiao kebiao3'>
+          <view class='kebiao_bs'>放学
+            <text class='icon iconfont icon-combinedshapecopy2'></text>
+          </view>
+        </view>
+      </view>
+       <view wx:for="{{slotNight}}" wx:key="index">
+        <view style="width:750rpx; position: absolute;border-bottom:1rpx dashed #e9e8e8;margin-top:{{(index+1)*100+419}}rpx;">
+        </view>
+      </view>
+      <!--课表-->
+      <view wx:for="{{morning}}" wx:key="index">
+        <view class="flex-item kcb-item shuxue" style="margin-left:{{(item.week)*94+10}}rpx;margin-top:{{(item.slotOrderFie)*100-35}}rpx;height:90rpx;">
+            <view class="smalltext">{{item.courseName}}</view>
+        </view>
+      </view>
+      <view wx:for="{{noon}}" wx:key="index">
+        <view class="flex-item kcb-item yingwen" style="margin-left:{{(item.week)*94+10}}rpx;margin-top:{{(item.slotOrderFie)*100+25}}rpx;height:85rpx;">
+            <view class="smalltext">{{item.courseName}}</view>
+        </view>
+      </view>
+      
+      <view wx:for="{{night}}" wx:key="index">
+        <view class="flex-item kcb-item yuwen" style="margin-left:{{(item.week)*94+10}}rpx;margin-top:{{(item.slotOrderFie)*100+75}}rpx;height:85rpx;">
+            <view class="smalltext">{{item.courseName}}</view>
+        </view>
+      </view>
+    </view>
+  </view> 
+</view>

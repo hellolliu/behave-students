@@ -1,0 +1,25 @@
+<view class="container">
+  <view class="content-list" >
+    <view wx:for="{{items}}" wx:key="*this" wx:for-index="index" data-item="item" >
+      <view class="{{item.select?'content-item select':'content-item'}}" data-index="{{index}}" bindtap="itemSelect">
+        <image class="content-image" src="{{item.avatar}}"></image>
+        <view class="content-name">{{item.username}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="bottom-view">
+  
+  <view class="sk-three-bounce" hidden="{{lonadding}}">
+    <view class="sk-child sk-bounce1"></view>
+    <view class="sk-child sk-bounce2"></view>
+    <view class="sk-child sk-bounce3"></view>
+  </view>
+  <button class="bottom-botton-random " bindtap="radomSelect">随机挑选</button>
+  <button class="bottom-botton-question btn" bindtap="questionStart" wx:if="{{lonadding}}">开始提问</button>
+  <button class="bottom-botton-question btn" bindtap="questionEnd" wx:if="{{!lonadding}}">结束提问</button>
+  <button class="bottom-botton-random " bindtap="releaseContact">发布练习</button>
+  </view>
+</view>
+<modal hidden="{{hiddenmodalput}}" title="打分" confirm-text="提交" cancel-text="取消" bindcancel="cancelM" bindconfirm="confirmM">
+  <input bindinput='performance' value="{{scoreValue}}" type='number' placeholder="请输入分数" focus="{{inputFocus}}"/>
+</modal>

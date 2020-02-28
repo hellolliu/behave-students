@@ -1,0 +1,39 @@
+<!--pages/behave/teacher/score/index.wxml-->
+<view class="container">
+  <view class="kcap-border">
+    <view class='kcap-header'>学生作业</view>
+    <view class='kcap-list-border' >
+      <view class='kcap-list-item' wx:for="{{userAnswers}}" wx:key="index">
+        <view class='kcap-class'>
+         <text class="zy-title">{{item.studentName}}</text> 
+         <text class='kcap-time'>({{item.addTime}})</text>
+         <text class='kcap-status {{item.status!=1?"take_over":""}}' bindtap="teacherCorrect" data-index="{{index}}">批改</text>
+        </view>  
+      </view>
+  
+      <view class='kcap-list-item'></view>
+      <view class='kcap-list-item'></view>
+      <view class='kcap-list-item'></view>
+      <view class='kcap-list-item'></view>
+      <view class='kcap-list-item'></view>
+    </view>
+  </view>
+  <view class="bottom">
+    <view class="bottom-view-pick">
+      <picker mode="selector" value="{{index}}" range="{{taskArray}}" range-key="title" bindchange="bindTaskChange" class="start-pick">
+        <view class="picker">
+          题目: {{taskArray[taskIndex].title}}
+        </view>
+      </picker>
+    
+      <picker mode="selector" value="{{index}}" range="{{classArray}}" range-key="name" bindchange="bindClassChange" class="end-pick">
+        <view class="picker">
+          班级: {{classArray[classIndex].name}}
+        </view>
+      </picker>
+    </view>
+    <view class="bottom-button">
+      <button class="button" bindtap="queryStudentAnswer">查询</button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,40 @@
+<!--pages/behave/student/index.wxml-->
+<view class="container">
+  <view class="class-info">
+    <image src="../../../static/images/shuju.jpg" class="class-info-image"></image>
+    <view class="class-info-js">{{course.name}}</view>
+    <view class="separate"></view>
+    <view class="class-info-detail">
+    {{course.comment}}
+    </view>
+  </view>
+  <view class="separate"></view>
+  <view class="teacher-info">
+    <view class="teacher-info-lsjs">老师介绍</view>
+    <view class="teacher-info-detail">
+      <image src="../../../static/images/ss.jpg" class="teacher-info-image"></image>
+      <view class="teacher-info-text">
+        <view class="teacher-info-h">{{user.username}}</view>
+        <view class="teacher-info-b">
+        {{user.teaBrief}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="kcap-border" >
+    <view class='kcap-header'>课程表现</view>
+    <view class='kcap-list-border' >
+      <view class='kcap-list-item' wx:for="{{userScore}}" wx:key="index">
+        <view class='kcap-class'>
+         <text>{{item.value}}</text> 
+         <text class='kcap-time'>{{item.addTime}}</text>
+        </view>  
+      </view>
+      <view class='kcap-list-item'></view>
+      <view class='kcap-list-item'></view>
+      <view class='kcap-list-item'></view>
+      <view class='kcap-list-item'></view>
+      <view class='kcap-list-item'></view>
+    </view>
+  </view>
+</view>

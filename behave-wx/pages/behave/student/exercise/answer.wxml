@@ -1,0 +1,34 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+<view class="container">
+  <view class="form-box">
+  
+    <view class="weui-cells__title">问题</view>
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">
+              {{answerObj.teacherQuestion.title}}
+            </view>
+        </view>
+    </view>
+    <view class="weui-cells__title"></view>
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">
+                 <textarea class="weui-textarea" disabled="true" value="{{answerObj.teacherQuestion.value}}" style="height: 3.3em" />
+            </view>
+        </view>
+      </view>
+    <view class="weui-cells__title">答案</view>
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">
+                 <textarea class="weui-textarea" bindinput="valueChange" placeholder="请输入内容" style="height: 3.3em" />
+            </view>
+        </view>
+      </view>
+      <view class="weui-cells__title"></view>
+
+    <button type="primary" class="delete-btn" bindtap="answer">确定</button>
+  </view>
+</view>
+</view>

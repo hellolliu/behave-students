@@ -1,0 +1,79 @@
+package org.java.behave.db.service;
+
+import com.github.pagehelper.PageHelper;
+import org.java.behave.db.dao.BehaveCourseMapper;
+import org.java.behave.db.dao.BehaveUserMapper;
+import org.java.behave.db.domain.BehaveCourse;
+import org.java.behave.db.domain.BehaveCourse.Column;
+import org.java.behave.db.domain.BehaveCourseExample;
+import org.java.behave.db.domain.BehaveUser;
+import org.java.behave.db.domain.BehaveUserExample;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class BehaveCourseService {
+    @Autowired
+    private BehaveCourseMapper behaveCourseMapper;
+
+    @Autowired
+    private BehaveUserMapper userMapper;
+
+    private final Column[] result = new Column[]{BehaveCourse.Column.id, Column.name,Column.address,Column.userId,Column.userName};
+    public List<BehaveCourse> queryAll(){
+        BehaveCourseExample example=new BehaveCourseExample();
+        example.or().andDeletedEqualTo(false);
+        return behaveCourseMapper.selectByExampleSelective(example,result);
+    }
+    public List<BehaveCourse> querySelective(String name,String mobile, Integer page, Integer limit, String sort, String order) {
+        BehaveUserExample userExample=new BehaveUserExample();
+        BehaveUserExample.Criteria ca=userExample.createCriteria();
+
+        if (!StringUtils.isEmpty(name)) {
+            ca.andUsernameEqualTo(name);
+        }
+
+        if (!StringUtils.isEmpty(mobile)) {
+            ca.andMobileEqualTo(mobile);
+        }
+        ca.andDeletedEqualTo(false);
+        List<BehaveUser>users=userMapper.selectByExample(userExample);
+        if (users!=null&& users.size()!=0){
+            BehaveCourseExample example = new BehaveCourseExample();
+            BehaveCourseExample.Criteria criteria = example.createCriteria();
+            criteria.andUserIdEqualTo(users.get(0).getId());
+            criteria.andDeletedEqualTo(false);
+            if (!StringUtils.isEmpty(sort) && !StringUtils.isEmpty(order)) {
+                example.setOrderByClause(sort + " " + order);
+            }
+            PageHelper.startPage(page, limit);
+            return behaveCourseMapper.selectByExample(example);
+        }
+        return new ArrayList<BehaveCourse>() ;
+    }
+    public List<BehaveCourse> findAdmin(String username) {
+        BehaveCourseExample example = new BehaveCourseExample();
+        example.or().andNameEqualTo(username).andDeletedEqualTo(false);
+        return behaveCourseMapper.selectByExample(example);
+    }
+    public int updateById(BehaveCourse behaveClass) {
+        return behaveCourseMapper.updateByPrimaryKeySelective(behaveClass);
+    }
+
+    public void deleteById(Integer id) {
+        behaveCourseMapper.deleteByPrimaryKey(id);
+    }
+
+    public void add(BehaveCourse behaveClass) {
+        behaveCourseMapper.insertSelective(behaveClass);
+    }
+
+    public BehaveCourse findById(Integer id) {
+        return behaveCourseMapper.selectByPrimaryKey(id);
+    }
+
+}

@@ -1,0 +1,35 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+<view class="container">
+  <view class="form-box">
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">
+                 <input class="password" value="{{question.title}}" bindinput="titleChange" placeholder="标题" placeholder-class="ppl-color"/>
+                  <image class="clear" id="clear-confirm-password" wx:if="{{ question.title.length>0 }}" src="/static/images/clear_input.png" catchtap="clearTitleInput"></image>
+            </view>
+        </view>
+    </view>
+    <view class="weui-cells__title"></view>
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">
+                 <textarea class="weui-textarea" bindinput="valueChange" placeholder="请输入内容" value="{{question.value}}" style="height: 3.3em" />
+                 <view class="weui-textarea-counter">{{question.value.length}}</view>
+            </view>
+        </view>
+      </view>
+      <view class="weui-cells__title"></view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_switch">
+          <view class="weui-cell__bd">是否启用</view>
+            <view class="wweneui-cell__ft">
+                <switch bindchange="statusChange" checked ="{{question.status==1}}" />
+            </view>
+          </view>
+      </view>
+
+    <button type="warn" class="register-btn" wx:if="{{type==1}}" bindtap="deleteQuestion">删除</button>
+    <button type="primary" class="delete-btn" bindtap="addOrUpdate">确定</button>
+  </view>
+</view>
+</view>

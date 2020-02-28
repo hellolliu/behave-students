@@ -1,0 +1,117 @@
+<view class="container">
+  <view class="sk-circle" hidden='{{loading}}'>
+    <view class="sk-circle1 sk-child"></view>
+    <view class="sk-circle2 sk-child"></view>
+    <view class="sk-circle3 sk-child"></view>
+    <view class="sk-circle4 sk-child"></view>
+    <view class="sk-circle5 sk-child"></view>
+    <view class="sk-circle6 sk-child"></view>
+    <view class="sk-circle7 sk-child"></view>
+    <view class="sk-circle8 sk-child"></view>
+    <view class="sk-circle9 sk-child"></view>
+    <view class="sk-circle10 sk-child"></view>
+    <view class="sk-circle11 sk-child"></view>
+    <view class="sk-circle12 sk-child"></view>
+  </view>
+  <view hidden='{{teacher}}'>
+     <view class="header">    
+       欢迎<text class="userinfo-nickname"></text>使用
+     </view>
+     <view class='info-border'>
+      <text class='info-border-time'>{{dateNow}}</text> 
+      <text style='margin-left:20rpx;'>{{teacherName}}</text>
+     </view>
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <view class="input-wrap">    
+        <input type="text" value='{{curIpt}}' returnKeyType='send' placeholder="请输入待做的事" class="ipt-main"  bindinput='iptChange' />     
+        <view class="flex-row flex-time" wx:if="{{curIpt}}">
+            <picker range='{{curRange}}' value='{{curBegin}}' bindchange='beginChange'  class="pick-time time">
+                <text>
+                    开始时间：{{curRange[curBegin]}}
+                </text>
+            </picker>  
+            <picker range='{{curRange}}' value='{{curFinish}}' bindchange='finishChange'  class="pick-time time">
+                <text>
+                    结束时间：{{curRange[curFinish]}}
+                </text>
+            </picker>  
+            <label class="time"><switch class="switch" checked bindchange="switch1Change" />提醒</label>
+        </view>
+        <view class="flex-row" wx:if="{{curIpt}}">        
+          <button class="btn btn-submit" formType="submit" hover-class="btn-hover">提交</button>
+          <button class="btn btn-cancel" formType="reset">清空</button>
+        </view>
+      </view>
+    </form>
+  <view class="list-wrap">
+    <view wx:for="{{lists}}" wx:key="index" wx:if="{{showAll ||(!showAll && !item.done)}}" id="{{item.id}}" class="{{item.done?'done list':'list'}}">        
+        <text>{{index+1}}:</text>
+        <text data-id ="{{index}}"  class="cnt" bindtap="toChange" >{{item.content}}</text>
+        <view hidden="{{!item.editing}}" class="edit-wrap">
+            <input class="ipt-edit" value="{{item.content}}"  data-id="{{index}}" bindinput='iptEdit' />
+            <button class="btn btn-edit" data-id="{{index}}" bindtap="saveEdit">修改</button>
+        </view>
+        <text class="time"> {{item.beginTime}}-{{item.finishTime}}</text>
+        <icon class="ico-done" bindtap="setDone" data-id="{{index}}" type="success_no_circle" size='18' color="{{item.done?'#d7d7d7':'#6fa6cf'}}" />
+        <icon class="ico-delete" bindtap="toDelete" data-id="{{index}}" type='cancel' size='20' color="#6fa6cf" />
+    </view>
+    <view class="footer">
+        <view class="ft-area">
+            <text>{{lists.length}}条</text>
+        </view>
+         <view class="ft-area ft-mid">
+            <text wx:if="{{showAll}}" bindtap="showUnfinished" class="ft-action">显示未完成</text>
+            <text wx:else bindtap="showAll" class="ft-action">显示全部</text>
+        </view>
+        <view class="ft-area">
+            <text bindtap="doneAll" class="ft-action">全部完成</text>
+            <text bindtap="deleteAll" class="ft-action">全删</text>
+        </view>
+    </view>
+  </view>
+ 
+  </view>
+  <view class="kcap-border" hidden='{{teacher}}'>
+    <view class='kcap-header'>今日课程安排</view>
+    <view class='kcap-list-border' >
+      <view class='kcap-list-item' wx:for="{{courseList}}" wx:key="index">
+        <view class='kcap-class'>
+         <view class="inlineName">
+           <text>{{item.scheduleValue.courseName}}</text> 
+         </view>
+         <text class='kcap-time'>({{item.scheduleSolt.timeSlot}})</text>
+         <text class='kcap-status {{item.status==1?" status-color":""}}'>{{item.status==0?"未开始":""}}{{item.status==1?" 正在上课中":""}}{{item.status==2?"已结束":""}}</text>
+         <button class='kcap-class-button {{item.status==1?"botton-color":""}}' disabled='{{item.status!=1}}'bindtap="startClass" data-scheduleid="{{item.scheduleValue.scheduleId}}" data-courseid="{{item.scheduleValue.courseId}}"> 开始上课</button>     
+        </view>  
+      </view>
+
+      <view class='kcap-list-item'></view>
+      <view class='kcap-list-item'></view>
+      <view class='kcap-list-item'></view>
+      <view class='kcap-list-item'></view>
+      <view class='kcap-list-item'></view>
+      <view class='kcap-list-item'></view>
+    </view>
+  </view>
+  <view class="kcap-border" hidden='{{student}}'>
+    <view class='kcap-header'>今日课程安排</view>
+    <view class='kcap-list-border' >
+      <view class='kcap-list-item' wx:for="{{studentCourses}}" wx:key="index">
+        <view class='kcap-class'>
+         <view class="inlineName">
+           <text>{{item.scheduleValue.courseName}}</text> 
+         </view>
+         <text class='kcap-time'>({{item.scheduleSolt.timeSlot}})</text>
+         <text class='kcap-status {{item.status==1?" status-color":""}}'>{{item.status==0?"未开始":""}}{{item.status==1?" 正在上课中":""}}{{item.status==2?"已结束":""}}</text>
+        <button class='kcap-class-button {{item.status==1?"botton-color":""}}' disabled='{{item.status!=1}}'data-index="{{index}}" bindtap="gotoClass"> 进入课堂</button>         
+        </view>  
+      </view>
+
+      <view class='kcap-list-item'></view>
+      <view class='kcap-list-item'></view>
+      <view class='kcap-list-item'></view>
+      <view class='kcap-list-item'></view>
+      <view class='kcap-list-item'></view>
+    </view>
+  </view>
+</view>

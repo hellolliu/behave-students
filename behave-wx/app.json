@@ -1,0 +1,57 @@
+{
+  "pages": [   
+    "pages/behave/index/index",
+    "pages/behave/teacher/index",
+    "pages/behave/teacher/score/index",
+    "pages/behave/teacher/task/index",
+    "pages/behave/teacher/task/add",
+    "pages/behave/teacher/curriculum/index",
+    "pages/behave/teacher/studentwork/index",
+    "pages/behave/student/index",
+    "pages/behave/student/exercise/index",
+    "pages/behave/student/exercise/answer",
+    "pages/behave/student/perform/index",
+    "pages/behave/student/schedule/index",
+    "pages/auth/login/login",
+    "pages/ucenter/index/index",
+    "pages/auth/accountLogin/accountLogin",
+    "pages/auth/register/register",
+    "pages/auth/reset/reset"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTitleText": "爱学习",
+    "enablePullDownRefresh": true,
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#FFFFFF",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "backgroundColor": "#fafafa",
+    "borderStyle": "white",
+    "selectedColor": "#AB956D",
+    "color": "#666",
+    "list": [
+      {
+        "pagePath": "pages/behave/index/index",
+        "iconPath": "static/images/home.png",
+        "selectedIconPath": "static/images/home@selected.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/ucenter/index/index",
+        "iconPath": "static/images/my.png",
+        "selectedIconPath": "static/images/my@selected.png",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true,
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    active: db, core, admin, wx
+  message:
+    encoding: UTF-8
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root:  ERROR
+    org.springframework:  ERROR
+    org.mybatis:  ERROR
+    org.java.behave.core:  ERROR
+    org.java.behave.db:  DEBUG
+    org.java.behave.admin:  ERROR
+    org.java.behave.wx:  ERROR
+    org.java.behave:  ERROR
