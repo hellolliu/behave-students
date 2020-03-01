@@ -302,21 +302,12 @@ public class WxAuthController {
     @PostMapping("reset")
     public Object reset(@RequestBody String body, HttpServletRequest request) {
         String password = JacksonUtil.parseString(body, "password");
-        String mobile = JacksonUtil.parseString(body, "mobile");
-
-        if (mobile == null || password == null) {
+        String userId= JacksonUtil.parseString(body, "userid");
+        if (userId==null||password == null) {
             return ResponseUtil.badArgument();
         }
 
-        List<BehaveUser> userList = userService.queryByMobile(mobile);
-        BehaveUser user = null;
-        if (userList.size() > 1) {
-            return ResponseUtil.serious();
-        } else if (userList.size() == 0) {
-            return ResponseUtil.fail(AUTH_MOBILE_UNREGISTERED, "手机号未注册");
-        } else {
-            user = userList.get(0);
-        }
+        BehaveUser user = userService.findById(Integer.valueOf(userId));
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String encodedPassword = encoder.encode(password);
