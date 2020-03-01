@@ -31,7 +31,21 @@
       </view>
     </view>
   </view>
-
+ <view class='separate' hidden="{{userType=='student'}}"></view>
+  <view class='user_area'  hidden="{{userType=='student'}}">
+   <view class='user_row'>
+    <view class='user_row_left'>其他功能</view>
+   </view>
+   <view class='user_column'>
+    <view class='user_column_item' bindtap='goNewPage' data-index='9' data-route='/pages/auth/reset/reset'>
+      <image class='user_column_item_image' src='/static/images/mobile.png'></image>
+      <view class='user_column_item_text'>修改密码</view>
+    </view>
+    <view class='user_column_item' bindtap=''></view>
+    <view class='user_column_item' bindtap=''></view>
+    <view class='user_column_item' bindtap=''></view>
+   </view>
+ </view>
   <view class='separate' hidden="{{userType=='teacher'}}"></view>
   <view class='user_area' hidden="{{userType=='teacher'}}">
     <view class='user_row'>
