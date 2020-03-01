@@ -136,30 +136,29 @@ Page({
   },
 
   clearInput: function(e) {
+    let user=this.data.user
     switch (e.currentTarget.id) {
       case 'clear-username':
+       user.username=''
         this.setData({
-          username: ''
+          username: '',
+          user:user
         });
         break;
       case 'clear-class':
+        user.classId=''
+
         this.setData({
-          class:'班级'
+          class:'班级',
+          user:user
         })
           break;
-      case 'clear-password':
-        this.setData({
-          password: ''
-        });
-        break;
-      case 'clear-confirm-password':
-        this.setData({
-          confirmPassword: ''
-        });
-        break;
+  
       case 'clear-mobile':
+        user.mobile=''
         this.setData({
-          mobile: ''
+          mobile: '',
+          user:user
         });
         break;
     }
