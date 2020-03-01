@@ -46,6 +46,7 @@ Page({
   addQuestion(){
     console.log("qutstion",this.data.question)
     let question=this.data.question
+    question.userId=wx.getStorageSync('user').id
     util.request(api.TeacherQuestionAdd, question, 'POST').then(function(res) {
       if (res.errno === 0) {
         var pages = getCurrentPages();
