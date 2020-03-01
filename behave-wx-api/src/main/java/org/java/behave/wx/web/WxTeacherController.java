@@ -48,7 +48,7 @@ public class WxTeacherController {
     }
     @PostMapping("addQuestion")
     public Object addQuestion(@RequestBody BehaveTeacherQuestion question){
-        if (verifiedQuestion(question))
+        if (!verifiedQuestion(question))
             return ResponseUtil.fail();
         questionService.add(question);
         return ResponseUtil.ok();
