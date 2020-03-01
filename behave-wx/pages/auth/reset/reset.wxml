@@ -1,10 +1,10 @@
 <view class="container">
   <view class="form-box">
 
-    <view class="form-item">
+    <!-- <view class="form-item">
       <input class="mobile" value="{{mobile}}" bindinput="bindMobileInput" placeholder="手机号" />
       <image wx:if="{{ mobile.length > 0 }}" id="clear-mobile" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
-    </view>
+    </view> -->
 
     <view class="form-item">
       <input class="password" value="{{password}}" password bindinput="bindPasswordInput" placeholder="密码" />
