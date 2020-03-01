@@ -13,40 +13,40 @@
           </div>
         </div>
       </el-col>
-      <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-        <div class="card-panel" @click="handleSetLineChartData('messages')">
-          <div class="card-panel-icon-wrapper icon-message">
-            <svg-icon icon-class="message" class-name="card-panel-icon" />
-          </div>
-          <div class="card-panel-description">
-            <div class="card-panel-text">商品数量</div>
-            <count-to :start-val="0" :end-val="goodsTotal" :duration="3000" class="card-panel-num"/>
-          </div>
-        </div>
-      </el-col>
-      <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-        <div class="card-panel" @click="handleSetLineChartData('purchases')">
-          <div class="card-panel-icon-wrapper icon-money">
-            <svg-icon icon-class="message" class-name="card-panel-icon" />
-          </div>
-          <div class="card-panel-description">
-            <div class="card-panel-text">货品数量</div>
-            <count-to :start-val="0" :end-val="productTotal" :duration="3200" class="card-panel-num"/>
-          </div>
-        </div>
-      </el-col>
-      <el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">
-        <div class="card-panel" @click="handleSetLineChartData('shoppings')">
-          <div class="card-panel-icon-wrapper icon-shoppingCard">
-            <svg-icon icon-class="money" class-name="card-panel-icon" />
-          </div>
-          <div class="card-panel-description">
-            <div class="card-panel-text">订单数量</div>
-            <count-to :start-val="0" :end-val="orderTotal" :duration="3600" class="card-panel-num"/>
-          </div>
-        </div>
-      </el-col>
-    </el-row>
+      <!--<el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">-->
+        <!--<div class="card-panel" @click="handleSetLineChartData('messages')">-->
+          <!--<div class="card-panel-icon-wrapper icon-message">-->
+            <!--<svg-icon icon-class="message" class-name="card-panel-icon" />-->
+          <!--</div>-->
+          <!--<div class="card-panel-description">-->
+            <!--<div class="card-panel-text">商品数量</div>-->
+            <!--<count-to :start-val="0" :end-val="goodsTotal" :duration="3000" class="card-panel-num"/>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</el-col>-->
+      <!--<el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">-->
+        <!--<div class="card-panel" @click="handleSetLineChartData('purchases')">-->
+          <!--<div class="card-panel-icon-wrapper icon-money">-->
+            <!--<svg-icon icon-class="message" class-name="card-panel-icon" />-->
+          <!--</div>-->
+          <!--<div class="card-panel-description">-->
+            <!--<div class="card-panel-text">货品数量</div>-->
+            <!--<count-to :start-val="0" :end-val="productTotal" :duration="3200" class="card-panel-num"/>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</el-col>-->
+      <!--<el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">-->
+        <!--<div class="card-panel" @click="handleSetLineChartData('shoppings')">-->
+          <!--<div class="card-panel-icon-wrapper icon-shoppingCard">-->
+            <!--<svg-icon icon-class="money" class-name="card-panel-icon" />-->
+          <!--</div>-->
+          <!--<div class="card-panel-description">-->
+            <!--<div class="card-panel-text">订单数量</div>-->
+            <!--<count-to :start-val="0" :end-val="orderTotal" :duration="3600" class="card-panel-num"/>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</el-col>-->
+    <!--</el-row>-->
   </div>
 </template>
 
