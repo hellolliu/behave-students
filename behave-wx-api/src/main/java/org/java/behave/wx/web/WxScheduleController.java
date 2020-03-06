@@ -48,6 +48,9 @@ public class WxScheduleController {
         if (StringUtils.isEmpty(classId))
             return ResponseUtil.badArgument();
         BehaveSchedule schedule=scheduleService.findByClassId(classId);
+        if(schedule==null){
+            return ResponseUtil.fail();
+        }
         List<BehaveScheduleValue> scheduleValues=scheduleService.queryScheduleVo(schedule.getId(), (LocalDateTime.now().getDayOfWeek().getValue()-1)+"");
         List<ScheduleVo> scheduleVos=initSchedule(scheduleValues);
         return ResponseUtil.ok(scheduleVos);
