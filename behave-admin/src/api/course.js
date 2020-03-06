@@ -12,7 +12,7 @@ export function createCourse(data) {
   return request({
     url: '/course/create',
     method: 'post',
-    params: data
+    data
   })
 }
 

@@ -56,19 +56,19 @@ public class AdminScheduleController {
     }
 
     @PostMapping("/delete")
-    public Object delete(String classId,String week,String slotId) {
-        if (StringUtils.isEmpty(classId)||StringUtils.isEmpty(week)||StringUtils.isEmpty(slotId)) {
+    public Object delete(String classId,String week,String slotFd) {
+        if (StringUtils.isEmpty(classId)||StringUtils.isEmpty(week)||StringUtils.isEmpty(slotFd)) {
             return ResponseUtil.badArgument();
         }
         BehaveSchedule schedule=scheduleService.findByClassId(classId);
-        scheduleService.deleteValue(schedule.getId(),week,slotId);
+        scheduleService.deleteValue(schedule.getId(),week,slotFd);
         return ResponseUtil.ok();
     }
     @PostMapping("/updateValue")
     public Object updateValue(@RequestBody BehaveScheduleValue scheduleValue) {
         if (scheduleValue.getCourseId() == null||
                 scheduleValue.getScheduleId() == null||
-                scheduleValue.getWeek() == null||scheduleValue.getSlotId()==null) {
+                scheduleValue.getWeek() == null||scheduleValue.getSlotOrderFie()==null) {
             return ResponseUtil.badArgument();
         }
         scheduleService.updateValue(scheduleValue);

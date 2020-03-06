@@ -276,11 +276,12 @@
         this.timeData[rowNum]=row;
       },
       deleteScheduleVel(scope,i){
+        console.log(this.titleData[i])
         let rowNum=scope.$index;
         deletedSchedule({
           classId:this.belongId,
           week:rowNum,
-          slotId:this.titleData[i].id
+          slotFd:this.titleData[i].sortFie
         }).then(response=>{
         }).catch(response=>{
           this.$message.warning(response)
@@ -289,11 +290,9 @@
       updateScheduleValue(scope,i){
         let courseIndex=scope.row[this.teacherKey[i]];
         let course=this.courseList[courseIndex];
-        console.log("course",course)
         var row=scope.row;
         let rowNum=scope.$index;
         let slot=this.titleData[i]
-        console.log("course",course)
         updateSchedule({
           scheduleId:this.belongId,
           week:rowNum,
@@ -303,7 +302,7 @@
           courseUserId:course.userId,
           courseAddress:course.address,
           slotOrderFie:this.titleData[i].sortFie,
-          slotId:this.titleData[i].id
+          slotId:this.titleData[i].sortFie
         }).then(response=>{
         }).catch(response=>{
           this.$message.warning(response)
