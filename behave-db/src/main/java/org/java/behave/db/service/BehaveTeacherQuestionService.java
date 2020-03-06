@@ -1,6 +1,9 @@
 package org.java.behave.db.service;
 
+import com.github.pagehelper.PageHelper;
 import org.java.behave.db.dao.BehaveTeacherQuestionMapper;
+import org.java.behave.db.domain.BehaveClass;
+import org.java.behave.db.domain.BehaveClassExample;
 import org.java.behave.db.domain.BehaveTeacherQuestion;
 import org.java.behave.db.domain.BehaveTeacherQuestionExample;
 import org.omg.CORBA.INITIALIZE;
@@ -8,6 +11,7 @@ import org.omg.CORBA.PUBLIC_MEMBER;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -21,7 +25,7 @@ public class BehaveTeacherQuestionService {
     public final Integer ENABLE=1;
     public final Integer NOTENABLE=0;
     @Autowired
-    public BehaveTeacherQuestionMapper questionMapper;
+    private BehaveTeacherQuestionMapper questionMapper;
 
     public BehaveTeacherQuestion findById(Integer id){
         return questionMapper.selectByPrimaryKey(id);
@@ -37,6 +41,20 @@ public class BehaveTeacherQuestionService {
         if (question.getStatus()!=null)
             ca.andStatusEqualTo(question.getStatus());
         ca.andDeletedEqualTo(false);
+        return questionMapper.selectByExample(example);
+    }
+    public List<BehaveTeacherQuestion> querySelective(Integer userid, Integer page, Integer limit, String sort, String order) {
+        BehaveTeacherQuestionExample example = new BehaveTeacherQuestionExample();
+        BehaveTeacherQuestionExample.Criteria criteria = example.createCriteria();
+        criteria.andDeletedEqualTo(false);
+
+        if (!StringUtils.isEmpty(userid))
+            criteria.andUserIdEqualTo(userid);
+        if (!StringUtils.isEmpty(sort) && !StringUtils.isEmpty(order)) {
+            example.setOrderByClause(sort + " " + order);
+        }
+
+        PageHelper.startPage(page, limit);
         return questionMapper.selectByExample(example);
     }
     public List<BehaveTeacherQuestion>queryBetweenTime(Integer userId,String start,String end){
@@ -58,7 +76,7 @@ public class BehaveTeacherQuestionService {
     }
     public int update(BehaveTeacherQuestion question){
         question.setAddTime(LocalDateTime.now());
-        question.setAddTime(LocalDateTime.now());
+        question.setUpdateTime(LocalDateTime.now());
         return questionMapper.updateByPrimaryKey(question);
     }
     public int delete(Integer id){

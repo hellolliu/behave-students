@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/wx/student")
@@ -36,11 +37,7 @@ public class WxStudentController {
     @Autowired
     private BehaveQuestionClassService questionClassService;
     @Autowired
-    private BehaveScheduleService scheduleService;
-    @Autowired
-    private BehaveClassService classService;
-    @Autowired
-    private BehaveScheduleSoltService scheduleSoltService;
+    private BehaveQuestionItemService questionItemService;
 
     @GetMapping("intoClassValue")
     public Object intoClassValue(Integer courserid, Integer teacherid,Integer studentid, Integer scheduleid){
@@ -87,6 +84,25 @@ public class WxStudentController {
             }
         });
         return ResponseUtil.ok(studentAnserVOS);
+    }
+    @GetMapping("studentQuestions")
+    public Object studentQuestions(Integer questionId){
+        if (questionId==null)
+            return ResponseUtil.fail();
+        BehaveQuestionItem item=new BehaveQuestionItem();
+        item.setQuestionId(questionId);
+        List<BehaveQuestionItem>questionItems=questionItemService.queryAll(item);
+        Map<Byte,List<BehaveQuestionItem>> qm = questionItems.stream().collect(Collectors.groupingBy(BehaveQuestionItem::getType));
+        if (qm.get(new Byte("0"))==null){
+            qm.put(new Byte("0"),new ArrayList<BehaveQuestionItem>());
+        }
+        if (qm.get(new Byte("1"))==null){
+            qm.put(new Byte("1"),new ArrayList<BehaveQuestionItem>());
+        }
+        if (qm.get(new Byte("2"))==null){
+            qm.put(new Byte("2"),new ArrayList<BehaveQuestionItem>());
+        }
+        return ResponseUtil.ok(qm);
     }
     @PostMapping("studentAnswer")
     public Object studentAnswer(@RequestBody BehaveUserAnswer userAnswer){

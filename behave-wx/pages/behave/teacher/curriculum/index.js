@@ -8,6 +8,7 @@ Page({
     cardRightIn: false,
     cardLeftIn: false,
     month:(new Date()).getMonth()+1,
+    year:(new Date()).getFullYear(),
     times: [],
     week_kecheng: [{
       index: 1,
@@ -93,7 +94,9 @@ Page({
       j++
     }
     this.setData({
-      times:all
+      times:all,
+      moningTh:slotM.length,
+      noonTh:slotN.length
     })
   }
 })

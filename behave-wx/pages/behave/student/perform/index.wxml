@@ -32,6 +32,6 @@
         </view>
       </picker>
     </view>
-    <view class="bottom-button"><button>查询</button></view>
+    <view class="bottom-button"><button bindtap="initValues" type="primary">查询</button></view>
   </view>
 </view>

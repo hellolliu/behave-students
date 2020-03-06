@@ -33,10 +33,10 @@
       </picker>
     </view>
     <view class="bottom-button">
-      <button class="button" bindtap="queryQuestioin">查询</button>
+      <button class="button" type="primary" bindtap="queryQuestioin">查询</button>
     </view>
-    <view class="task_jia">
+    <!-- <view class="task_jia">
       <image bindtap="toAdd" class="jia_image" src="../../../../static/images/pinglun_jia.png"></image>
-    </view>
+    </view> -->
   </view>
 </view>

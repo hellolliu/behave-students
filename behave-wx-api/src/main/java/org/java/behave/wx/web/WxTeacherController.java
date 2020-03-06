@@ -131,6 +131,7 @@ public class WxTeacherController {
         BehaveQuestionClass questionClass=questionClassService.findById(userScoreVO.getUserAnswer().getQuestionClassId());
         BehaveUserScore userScore=new BehaveUserScore();
         userScore.setQuestionId(questionClass.getQuestionId());
+        userScore.setCourseId(questionClass.getCourseId());
         userScore.setTeacherId(userScoreVO.getTeacherId());
         userScore.setUserId(userScoreVO.getUserAnswer().getStudentId());
         userScore.setUserName(userScoreVO.getUserAnswer().getStudentName());

@@ -28,7 +28,7 @@ public class BehaveClassService {
         BehaveClassExample.Criteria criteria = example.createCriteria();
 
         if (!StringUtils.isEmpty(name)) {
-            criteria.andNameEqualTo("%" + name + "%");
+            criteria.andNameLike("%" + name + "%");
         }
         criteria.andDeletedEqualTo(false);
 

@@ -32,7 +32,7 @@
       </picker>
     </view>
     <view class="bottom-button">
-      <button class="button" bindtap="initValues">查询</button>
+      <button class="button" bindtap="initValues" type="primary">查询</button>
     </view>
   </view>
 </view>

@@ -94,7 +94,9 @@ Page({
       j++
     }
     this.setData({
-      times:all
+      times:all,
+      moningTh:slotM.length,
+      noonTh:slotN.length
     })
   }
 })

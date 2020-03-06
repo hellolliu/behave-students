@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class BehaveUserScoreService {
@@ -50,7 +52,17 @@ public class BehaveUserScoreService {
     }
     public List<BehaveUserScore>queryStudentScore(Integer teacherId,Integer studentId,Integer courseId){
         BehaveUserScoreExample example=new BehaveUserScoreExample();
-       example.or().andTeacherIdEqualTo(teacherId).andUserIdEqualTo(studentId).andCourseIdEqualTo(courseId).andTypeEqualTo(QUESTION).andDeletedEqualTo(false);
+        example.or().andTeacherIdEqualTo(teacherId).andUserIdEqualTo(studentId).andCourseIdEqualTo(courseId).andTypeEqualTo(QUESTION).andDeletedEqualTo(false);
         return userScoreMapper.selectByExample(example);
+    }
+    public Map<Integer,List<BehaveUserScore>> queryStudents(Integer teacherId,Integer courseId){
+        BehaveUserScoreExample example=new BehaveUserScoreExample();
+        BehaveUserScoreExample.Criteria criteria=example.createCriteria();
+        criteria.andTeacherIdEqualTo(teacherId).andCourseIdEqualTo(courseId).andDeletedEqualTo(false);
+        List<BehaveUserScore> scores=userScoreMapper.selectByExample(example);
+        if (scores==null)
+            return null;
+        Map<Integer,List<BehaveUserScore>> mapUserScore=scores.stream().collect(Collectors.groupingBy(BehaveUserScore::getUserId));
+        return mapUserScore;
     }
 }

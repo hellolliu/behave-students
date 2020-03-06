@@ -182,7 +182,8 @@ Page({
            util.request(api.TeacherQuestionQC, {
             classId: that.data.classObject.id,
             questionId:questionList[res.tapIndex].id,
-            userId:user.id
+            userId:user.id,
+            courseId:that.data.courseid
           }, 'POST').then(function(res) {
             if (res.errno === 0) {
               wx.showToast({

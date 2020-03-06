@@ -26,6 +26,8 @@ public class BehaveQuestionClassService {
             ca.andQuestionIdEqualTo(questionClass.getQuestionId());
         if (questionClass.getUserId()!=null)
             ca.andUserIdEqualTo(questionClass.getUserId());
+        if (questionClass.getCourseId()!=null)
+            ca.andCourseIdEqualTo(questionClass.getCourseId());
         ca.andDeletedEqualTo(false);
         return questionClassMapper.selectByExample(example);
     }

@@ -61,6 +61,10 @@ Page({
         that.setData({
           userAnswers:res.data
         })
+      }else{
+        that.setData({
+          userAnswers:{}
+        })
       }
      
     });

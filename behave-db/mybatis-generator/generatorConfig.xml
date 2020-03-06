@@ -106,6 +106,9 @@
         <table tableName="behave_permission">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
+        <table tableName="behave_question_item">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
         <table tableName="behave_admin">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
             <columnOverride column="role_ids" javaType="java.lang.Integer[]"

@@ -134,14 +134,6 @@ page {
   height: 60rpx;
 }
 
-.kebiao2 {
-  margin-top: 460rpx;
-}
-
-.kebiao3 {
-  margin-top: 820rpx;
-}
-
 .kebiao_bs {
   width: 475rpx;
   background: #f8f8f8;

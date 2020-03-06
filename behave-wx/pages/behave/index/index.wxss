@@ -406,7 +406,7 @@
 }
 .inlineName{
   float: left;
-  width: 150rpx;
+  width: 103rpx;
   display:-webkit-box;
   -webkit-line-clamp:1;
   overflow:hidden;

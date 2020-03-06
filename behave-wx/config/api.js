@@ -39,6 +39,7 @@ module.exports = {
   StudentQueryScore:WxApiRoot+'student/studentQueryScore',//学生查课堂评分
   StudentAnswerAll:WxApiRoot+'student/studentAnswerAll',//学生查课堂作业
   StudentAnswerQuestion:WxApiRoot+'student/studentAnswer',//学生回答问题
+  studentQuestions:WxApiRoot+'student/studentQuestions',//学生所有问题
   StudentScheduleAll:WxApiRoot+'schedule/studentSchedule',//学生的所有课程
   
 };

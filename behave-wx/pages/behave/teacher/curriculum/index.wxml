@@ -43,7 +43,7 @@ module.exports.sub = sub;
         </view>
       </view>
       <view>
-        <view class='kebiao kebiao2'>
+        <view class='kebiao' style="margin-top:{{(moningTh)*100+59}}rpx">
           <view class='kebiao_bs'>午餐及休息
             <text class='icon iconfont icon-combinedshapecopy2'></text>
           </view>
@@ -53,8 +53,8 @@ module.exports.sub = sub;
         <view style="width:750rpx; position: absolute;border-bottom:1rpx dashed #e9e8e8;margin-top:{{(index+1)*100+419}}rpx;">
         </view>
       </view>
-      <view>
-        <view class='kebiao kebiao3'>
+      <view style="margin-top:{{(moningTh+noonTh+1)*100+10}}rpx">
+        <view class='kebiao'>
           <view class='kebiao_bs'>放学
             <text class='icon iconfont icon-combinedshapecopy2'></text>
           </view>

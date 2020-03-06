@@ -61,17 +61,17 @@ public class BehaveScheduleService {
         criteria.andIdEqualTo(Integer.valueOf(scheduleId));
         return scheduleMapper.selectOneByExample(example);
     }
-    public void deleteValue(Integer scheduleId,String week,String slotId){
+    public void deleteValue(Integer scheduleId,String week,String slotOF){
         BehaveScheduleValueExample example=new BehaveScheduleValueExample();
         example.or().andScheduleIdEqualTo(scheduleId)
                 .andWeekEqualTo(week)
-                .andSlotIdEqualTo(Integer.valueOf(slotId))
+                .andSlotOrderFieEqualTo(new Byte(slotOF))
         .andDeletedEqualTo(false);
         scheduleValueMapper.deleteByExample(example);
     }
     public void updateValue(BehaveScheduleValue scheduleValue){
         BehaveSchedule schedule=findByClassId(scheduleValue.getScheduleId()+"");
-        deleteValue(schedule.getId(),scheduleValue.getWeek(),scheduleValue.getSlotId()+"");
+        deleteValue(schedule.getId(),scheduleValue.getWeek(),scheduleValue.getSlotOrderFie()+"");
         scheduleValue.setScheduleId(schedule.getId());
         scheduleValue.setUpdateTime(LocalDateTime.now());
         scheduleValue.setAddTime(LocalDateTime.now());

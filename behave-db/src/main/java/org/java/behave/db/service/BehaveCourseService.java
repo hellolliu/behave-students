@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,6 +62,7 @@ public class BehaveCourseService {
         return behaveCourseMapper.selectByExample(example);
     }
     public int updateById(BehaveCourse behaveClass) {
+        behaveClass.setUpdateTime(LocalDateTime.now());
         return behaveCourseMapper.updateByPrimaryKeySelective(behaveClass);
     }
 
@@ -69,6 +71,8 @@ public class BehaveCourseService {
     }
 
     public void add(BehaveCourse behaveClass) {
+        behaveClass.setAddTime(LocalDateTime.now());
+        behaveClass.setDeleted(false);
         behaveCourseMapper.insertSelective(behaveClass);
     }
 
