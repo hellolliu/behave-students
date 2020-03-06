@@ -7,8 +7,10 @@ import { asyncRouterMap, constantRouterMap } from '@/router'
  */
 function hasPermission(perms, route) {
   if (route.meta && route.meta.perms) {
+    console.log("route.meta.perms",route.meta.perms)
     return perms.some(perm => route.meta.perms.includes(perm))
   } else {
+    console.log("true")
     return true
   }
 }
@@ -20,7 +22,7 @@ function hasPermission(perms, route) {
  */
 function filterAsyncRouter(routes, perms) {
   const res = []
-
+console.log("perms",perms)
   routes.forEach(route => {
     const tmp = { ...route }
     if (tmp.children) {

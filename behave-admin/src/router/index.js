@@ -147,7 +147,7 @@ export const asyncRouterMap = [
         component: () => import('@/views/behave/student'),
         name: 'student',
         meta: {
-          perms: ['GET /admin/student/list'],
+          perms: ['GET /admin/student/list','GET /admin/student/read'],
           title: '学生管理',
           noCache: true
         }
@@ -157,7 +157,7 @@ export const asyncRouterMap = [
         component: () => import('@/views/behave/teacher'),
         name: 'teacher',
         meta: {
-          perms: ['GET /admin/teacher/list','admin:teahcer:create','admin:teacher:read','admin:teacher:update','admin:teacher:delete'],
+          perms: ['GET /admin/teacher/list','POST /admin/teacher/create','GET /admin/teacher/read','POST /admin/teacher/update','POST /admin/teacher/delete'],
           title: '教师管理',
           noCache: true
         }
@@ -167,7 +167,7 @@ export const asyncRouterMap = [
         component: () => import('@/views/behave/course'),
         name: 'course',
         meta: {
-          perms: ['GET /admin/course/list','admin:course:create','admin:course:read','admin:course:update','admin:course:delete'],
+          perms: ['GET /admin/course/list','POST admin/course:create','GET /admin/course:read','POST /admin/course:update','POST /admin/course/delete','GET /admin/score/export'],
           title: '课程管理',
           noCache: true
         }
@@ -177,7 +177,7 @@ export const asyncRouterMap = [
         component: () => import('@/views/behave/schedule'),
         name: 'schedule',
         meta: {
-          perms: ['GET /admin/schedule/list','admin:schedule:create','admin:schedule:read','admin:schedule:update','admin:schedule:delete'],
+          perms: ['GET /admin/schedule/list','POST admin/schedule/create','GET admin/schedule/read','POST admin/schedule/update','POST admin/schedule/delete'],
           title: '课程表管理',
           noCache: true
         }
@@ -187,8 +187,18 @@ export const asyncRouterMap = [
         component: () => import('@/views/behave/schedulesolt'),
         name: 'schedulesolt',
         meta: {
-          perms: ['GET /admin/scheduleSolt/list','admin:scheduleSolt:create','admin:scheduleSolt:read','admin:scheduleSolt:update','admin:scheduleSolt:delete'],
+          perms: ['GET /admin/scheduleSolt/list','POST /admin/scheduleSolt/create','GET /admin/scheduleSolt/read','POST admin/scheduleSolt/update','POST admin/scheduleSolt/delete'],
           title: '时间段管理',
+          noCache: true
+        }
+      },
+      {
+        path: 'task',
+        component: () => import('@/views/behave/task'),
+        name: 'task',
+        meta: {
+          perms: ['GET /admin/task/list','POST /admin/task/create','GET /admin/task/read','POST /admin/task/update','POST /admin/task/delete'],
+          title: '练习管理',
           noCache: true
         }
       }

@@ -5,7 +5,7 @@
     <div class="filter-container">
       <el-input v-model="listQuery.username" clearable class="filter-item" style="width: 200px;" placeholder="请输入学生名称"/>
       <el-input v-model="listQuery.mobile" clearable class="filter-item" style="width: 200px;" placeholder="请输入学生手机号"/>
-      <el-button v-permission="['GET /admin/student/list']" class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查找</el-button>
+      <el-button v-permission="['GET /admin/user/list']" class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查找</el-button>
     </div>
 
     <!-- 查询结果 -->
@@ -171,6 +171,9 @@
           this.$refs['dataForm'].clearValidate()
         })
       },
+      handleDownload(row) {
+        console.log(row)
+      }
     }
   }
 </script>

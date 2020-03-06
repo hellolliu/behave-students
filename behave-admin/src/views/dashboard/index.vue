@@ -2,6 +2,9 @@
   <div class="dashboard-editor-container">
 
     <el-row :gutter="40" class="panel-group">
+     <div class="card-panel">
+       <div class="card-panel-wel">欢迎进入......</div>
+     </div>
       <!--<el-col :xs="12" :sm="12" :lg="6" class="card-panel-col">-->
         <!--<div class="card-panel" @click="handleSetLineChartData('newVisitis')">-->
           <!--<div class="card-panel-icon-wrapper icon-people">-->
@@ -92,7 +95,9 @@ export default {
     margin-bottom: 32px;
   }
 }
-
+.card-panel-wel{
+  margin-left: 50px;
+}
 .panel-group {
   margin-top: 18px;
 
@@ -101,8 +106,9 @@ export default {
   }
   .card-panel {
     height: 108px;
+    line-height: 100px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 56px;
     position: relative;
     overflow: hidden;
     color: #666;
@@ -148,21 +154,6 @@ export default {
     .card-panel-icon {
       float: left;
       font-size: 48px;
-    }
-    .card-panel-description {
-      float: right;
-      font-weight: bold;
-      margin: 26px;
-      margin-left: 0px;
-      .card-panel-text {
-        line-height: 18px;
-        color: rgba(0, 0, 0, 0.45);
-        font-size: 16px;
-        margin-bottom: 12px;
-      }
-      .card-panel-num {
-        font-size: 20px;
-      }
     }
   }
 }

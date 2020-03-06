@@ -1,40 +1,40 @@
 import request from '@/utils/request'
 
-export function listTeacher(query) {
+export function listTask(query) {
   return request({
-    url: '/teacher/list',
+    url: '/task/list',
     method: 'get',
     params: query
   })
 }
 
-export function createTeacher(data) {
+export function createTask(data) {
   return request({
-    url: '/teacher/create',
+    url: '/task/create',
     method: 'post',
     data
   })
 }
 
-export function readTeacher(data) {
+export function readTask(data) {
   return request({
-    url: '/teacher/read',
+    url: '/task/read',
     method: 'get',
     data
   })
 }
 
-export function updateTeacher(data) {
+export function updateTask(data) {
   return request({
-    url: '/teacher/update',
+    url: '/task/update',
     method: 'post',
     data
   })
 }
 
-export function deleteTeacher(data) {
+export function deleteTask(data) {
   return request({
-    url: '/user/delete',
+    url: '/task/delete',
     method: 'post',
     data
   })

@@ -1,5 +1,5 @@
 import request from '@/utils/request'
-
+import axios from 'axios'
 export function listCourse(query) {
   return request({
     url: '/course/list',
@@ -12,15 +12,7 @@ export function createCourse(data) {
   return request({
     url: '/course/create',
     method: 'post',
-    data
-  })
-}
-
-export function readCourse(data) {
-  return request({
-    url: '/course/read',
-    method: 'get',
-    data
+    params: data
   })
 }
 
@@ -39,3 +31,21 @@ export function deleteCourse(data) {
     data
   })
 }
+
+export function exportScore(data) {
+  return request({
+    url: '/score/export',
+    responseType: 'blob',
+    method: 'post',
+    params: data
+  })
+}
+    // 导出
+  export function exportExcel(data) {
+    return request({
+      url: '/score/export?teacherid='+data.teacherid+"&courseid="+data.courseid,
+      method: 'post',
+      responseType: 'blob',
+      data: data
+    })
+  }

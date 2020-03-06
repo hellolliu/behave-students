@@ -16,10 +16,11 @@
       <el-table-column align="center" min-width="100px" label="上课地址" prop="address"/>
       <el-table-column align="center" min-width="200px" label="课程简介" prop="comment"/>
 
-      <el-table-column align="center" label="操作" class-name="small-padding fixed-width">
+      <el-table-column align="center" label="操作" min-width="100px"  class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button v-permission="['POST /admin/course/update']" type="primary" size="mini" @click="handleUpdate(scope.row)">编辑</el-button>
           <el-button v-permission="['POST /admin/course/delete']" type="danger" size="mini" @click="handleDelete(scope.row)">删除</el-button>
+          <el-button v-permission="['POST /admin/course/delete']"  type="warning" size="mini" @click="handleDownload(scope.row)">导出</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -45,7 +46,6 @@
         <el-button v-else type="primary" @click="updateData">确定</el-button>
       </div>
     </el-dialog>
-
   </div>
 </template>
 
@@ -76,10 +76,10 @@
 </style>
 
 <script>
-  import { listCourse, createCourse, updateCourse, deleteCourse } from '@/api/course'
+  import { listCourse, createCourse, updateCourse, deleteCourse ,exportScore,exportExcel} from '@/api/course'
   import { getToken } from '@/utils/auth'
   import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
-
+  import axios from 'axios'
   export default {
     name: 'class',
     components: { Pagination },
@@ -153,7 +153,7 @@
         this.getList()
       },
       resetForm() {
-          id: undefined,
+        id: undefined,
           this.dataForm = {
             id: undefined,
             name: undefined,
@@ -255,19 +255,36 @@
             })
           })
       },
-      handleDownload() {
-        this.downloadLoading = true
-        import('@/vendor/Export2Excel').then(excel => {
-          const tHeader = ['管理员ID', '管理员名称', '管理员头像']
-          const filterVal = ['id', 'username', 'avatar']
-          excel.export_json_to_excel2(
-            tHeader,
-            this.list,
-            filterVal,
-            '管理员信息'
-          )
-          this.downloadLoading = false
+
+
+      handleDownload(row) {
+        this.$confirm('您确定导出课程："'+row.name+'"的学生成绩吗？').then(e => {
+          exportExcel({teacherid:8,courseid:8}).then((res) => {
+            if (res){
+              this.initExcel(res)
+            }
+          }).catch(res=>{
+            if (res){
+              this.initExcel(res)
+            }
+          })
+
+        }).catch(_ => {
         })
+      },
+      initExcel(res){
+        const link = document.createElement('a');
+        let blob = new Blob([res.data], {type: 'application/vnd.ms-excel'});
+        link.style.display = 'none';
+        link.href = URL.createObjectURL(blob);
+        let num = '';
+        for (let i = 0; i < 10; i++) {
+          num += Math.ceil(Math.random() * 10)
+        }
+        link.setAttribute('download', '表现分汇总' + num + '.xls');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link)
       }
     }
   }
