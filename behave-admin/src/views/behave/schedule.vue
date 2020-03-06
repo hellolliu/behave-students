@@ -302,7 +302,7 @@
           courseUserId:course.userId,
           courseAddress:course.address,
           slotOrderFie:this.titleData[i].sortFie,
-          slotId:this.titleData[i].sortFie
+          slotId:this.titleData[i].id
         }).then(response=>{
         }).catch(response=>{
           this.$message.warning(response)

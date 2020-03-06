@@ -192,7 +192,7 @@
                 this.dialogFormVisible = false
                 this.$notify.success({
                   title: '成功',
-                  message: '添加班级成功'
+                  message: '添加教师成功'
                 })
               })
               .catch(response => {
@@ -227,7 +227,7 @@
                 this.dialogFormVisible = false
                 this.$notify.success({
                   title: '成功',
-                  message: '更新班级成功'
+                  message: '更新教师成功'
                 })
               })
               .catch(response => {
@@ -244,7 +244,7 @@
           .then(response => {
             this.$notify.success({
               title: '成功',
-              message: '删除班级成功'
+              message: '删除教师成功'
             })
             const index = this.list.indexOf(row)
             this.list.splice(index, 1)

@@ -34,7 +34,7 @@ export function updateTeacher(data) {
 
 export function deleteTeacher(data) {
   return request({
-    url: '/user/delete',
+    url: '/teacher/delete',
     method: 'post',
     data
   })
