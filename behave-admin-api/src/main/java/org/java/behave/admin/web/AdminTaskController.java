@@ -1,5 +1,6 @@
 package org.java.behave.admin.web;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.java.behave.admin.annotation.RequiresPermissionsDesc;
 import org.java.behave.core.util.ResponseUtil;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/admin/task")
@@ -46,7 +48,10 @@ public class AdminTaskController {
             return ResponseUtil.fail();
         }
         List<BehaveTeacherQuestion> teacherQuestions = teacherQuestionService.querySelective(user.get(0).getId(), page, limit, sort, order);
-        return ResponseUtil.okList(teacherQuestions);
+        Map<String,Object> re=new HashedMap();
+        re.put("user",user);
+        re.put("teacherQuestions", ResponseUtil.okList(teacherQuestions));
+        return ResponseUtil.ok(re);
     }
     private Object validate(BehaveTeacherQuestion teacherQuestion) {
         String name = teacherQuestion.getTitle();
