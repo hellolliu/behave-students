@@ -1,53 +1,18 @@
-.form-box {
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-  padding: 0 40rpx;
-  margin-top: 96rpx;
-  background: #fff;
+
+.page {
+  background-color: #f8f8f8;
+  font-size: 16px;
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
 }
 
-.form-item {
-  position: relative;
-  background: #fff;
-  height: 96rpx;
-  border-bottom: 1px solid #d9d9d9;
+.page__hd {
+  padding: 40px;
 }
 
-.form-item .username, .form-item .password, .form-item .mobile, .form-item .code {
-  position: absolute;
-  top: 26rpx;
-  left: 0;
-  display: block;
-  width: 100%;
-  height: 44rpx;
-  background: #fff;
-  color: #333;
-  font-size: 30rpx;
-}
-
-.form-item-code {
-  margin-top: 32rpx;
-  height: auto;
-  overflow: hidden;
-  width: 100%;
-}
-
-.form-item-code .form-item {
-  float: left;
-  width: 350rpx;
-}
-
-.form-item-code .code-btn {
-  float: right;
-  padding: 20rpx 40rpx;
-  border: 1px solid #d9d9d9;
-  border-radius: 10rpx;
-  color: #fff;
-  background: green;
-}
-
-.form-item .clear {
+.page__bd {
+  padding-bottom: 40px;
+} 
+.clear {
   position: absolute;
   top: 26rpx;
   right: 18rpx;
@@ -57,16 +22,16 @@
   height: 44rpx;
   width: 44rpx;
 }
-
-.register-btn {
-  margin: 60rpx 0 40rpx 0;
-  height: 96rpx;
-  line-height: 96rpx;
-  color: #fff;
-  font-size: 30rpx;
-  width: 100%;
-  border-radius: 6rpx;
+.register-btn{
+  margin-top: 50rpx;
 }
-.ppl-color{
-  color:#999999
+.top-value{
+  margin-top: 50rpx;
 }
+.weui-input {
+  height: 3em;
+  min-height: 3em;
+  line-height: 3em;
+  
+  }
+  

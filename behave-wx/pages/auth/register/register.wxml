@@ -1,32 +1,37 @@
-<view class="container">
-  <view class="form-box">
-
-    <view class="form-item">
-      <input class="username" value="{{user.username}}" bindinput="bindUsernameInput" placeholder="真实姓名" placeholder-class="ppl-color" auto-focus/>
-      <image wx:if="{{ user.username.length > 0 }}" id="clear-username" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
-    </view>
-   
-    <view class="form-item">
-      <picker mode = 'selector' class="username" bindchange="bindPickerChange" value="{{id}}" range="{{classArray}}" range-key="name">
-        <view wx:if="{{class=='班级'}}" class="ppl-color">{{class}}</view>
-        <view wx:else>{{class}}</view>
-      </picker>
-      <image wx:if="{{ class.length > 0 && class!='班级'}}" id="clear-class" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
-    </view>
-    <!-- <view class="form-item">
-      <input class="password" value="{{password}}" password bindinput="bindPasswordInput" placeholder="密码" placeholder-class="ppl-color"/>
-      <image class="clear" id="clear-password" wx:if="{{ password.length > 0 }}" src="/static/images/clear_input.png" catchtap="clearInput"></image>
-    </view>
-
-    <view class="form-item">
-      <input class="password" value="{{user.confirmPassword}}" password bindinput="bindConfirmPasswordInput" placeholder="确认密码" placeholder-class="ppl-color"/>
-      <image class="clear" id="clear-confirm-password" wx:if="{{ user.confirmPassword.length > 0 }}" src="/static/images/clear_input.png" catchtap="clearInput"></image>
-    </view> -->
-
-    <view class="form-item">
-      <input class="mobile" value="{{user.mobile}}" bindinput="bindMobileInput" placeholder="手机号" placeholder-class="ppl-color"/>
-      <image wx:if="{{ user.mobile.length > 0 }}" id="clear-mobile" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
-    </view>
+<view class="page"  xmlns:wx="http://www.w3.org/1999/xhtml">
+   <view class="page__bd">
+    <view class="weui-cells weui-cells_after-title top-value">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">姓名</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input"value="{{user.username}}" bindinput="bindUsernameInput"  placeholder="请输入姓名"/>
+                     <image wx:if="{{ user.username.length > 0 }}" id="clear-username" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input weui-cell_vcode">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">手机号</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input"  value="{{user.mobile}}" bindinput="bindMobileInput" placeholder="请输入手机号" />
+                    <image wx:if="{{ user.mobile.length > 0 }}" id="clear-mobile" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+                </view>
+        
+            </view>
+             <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">班级</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker bindchange="bindPickerChange" value="{{id}}" range="{{classArray}}" range-key="name">
+                        <view class="weui-input">{{class}}</view>
+                    </picker>
+                     <image wx:if="{{ class.length > 0 && class!=''}}" id="clear-class" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+                </view>
+            </view>
+        </view>
     <button type="primary" class="register-btn" bindtap="startRegister">确定</button>
 
   </view>

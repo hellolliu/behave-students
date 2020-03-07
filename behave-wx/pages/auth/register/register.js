@@ -5,7 +5,7 @@ var app = getApp();
 Page({
   data: {
     username: '',
-    class:'班级',
+    class:'',
     classId:'',
     password: '',
     confirmPassword: '',
@@ -28,7 +28,7 @@ Page({
       if (res.errno === 0) {
         let user=that.data.user
         let classArray=res.data
-        let className='班级'
+        let className=''
         let classId='' 
         for(var i=0;i<classArray.length;i++){
           if(classArray[i].id==user.classId){
@@ -149,7 +149,7 @@ Page({
         user.classId=''
 
         this.setData({
-          class:'班级',
+          class:'',
           user:user
         })
           break;
