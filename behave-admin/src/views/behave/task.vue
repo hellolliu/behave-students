@@ -301,6 +301,9 @@
             this.list = []
             this.total = 0
             this.listLoading = false
+            this.teacherid=user.id
+            this.teachername=user.username
+
           })
       },
       handleFilter() {
