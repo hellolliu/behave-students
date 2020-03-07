@@ -8,7 +8,7 @@
       <el-button v-permission="['GET /admin/task/list']" class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查找</el-button>
       <el-button v-permission="['POST /admin/task/create']" class="filter-item" type="primary" icon="el-icon-edit" @click="handleCreate">添加</el-button>
     </div>
-
+    <div class="">教师：{{teachername}}</div>
     <!-- 查询结果 -->
     <el-table v-loading="listLoading" :data="list" element-loading-text="正在查询中。。。" border fit highlight-current-row>
       <el-table-column align="center" label="ID" prop="id" sortable/>
@@ -270,6 +270,7 @@
             { required: true, message: '题目不能为空', trigger: 'blur' }
           ]
         },
+        teachername:''
       }
     },
     computed: {
@@ -296,13 +297,16 @@
               if (user !=null&&user.id!=null){
                 this.teacherid=user.id
                 this.teachername=user.username
+              }else {
+                this.teacherid=undefined
+                this.teachername=undefined
               }
           }).catch(() => {
             this.list = []
             this.total = 0
             this.listLoading = false
-            this.teacherid=user.id
-            this.teachername=user.username
+            this.teacherid=undefined
+            this.teachername=''
 
           })
       },
