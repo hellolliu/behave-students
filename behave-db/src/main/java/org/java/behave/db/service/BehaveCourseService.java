@@ -30,23 +30,12 @@ public class BehaveCourseService {
         example.or().andDeletedEqualTo(false);
         return behaveCourseMapper.selectByExampleSelective(example,result);
     }
-    public List<BehaveCourse> querySelective(String name,String mobile, Integer page, Integer limit, String sort, String order) {
-        BehaveUserExample userExample=new BehaveUserExample();
-        BehaveUserExample.Criteria ca=userExample.createCriteria();
+    public List<BehaveCourse> querySelective(Integer id, Integer page, Integer limit, String sort, String order) {
 
-        if (!StringUtils.isEmpty(name)) {
-            ca.andUsernameEqualTo(name);
-        }
-
-        if (!StringUtils.isEmpty(mobile)) {
-            ca.andMobileEqualTo(mobile);
-        }
-        ca.andDeletedEqualTo(false);
-        List<BehaveUser>users=userMapper.selectByExample(userExample);
-        if (users!=null&& users.size()!=0){
+        if (id!=null){
             BehaveCourseExample example = new BehaveCourseExample();
             BehaveCourseExample.Criteria criteria = example.createCriteria();
-            criteria.andUserIdEqualTo(users.get(0).getId());
+            criteria.andUserIdEqualTo(id);
             criteria.andDeletedEqualTo(false);
             if (!StringUtils.isEmpty(sort) && !StringUtils.isEmpty(order)) {
                 example.setOrderByClause(sort + " " + order);

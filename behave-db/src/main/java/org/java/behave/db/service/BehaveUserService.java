@@ -2,6 +2,7 @@ package org.java.behave.db.service;
 
 import com.github.pagehelper.PageHelper;
 import org.java.behave.db.dao.BehaveUserMapper;
+import org.java.behave.db.domain.BehaveCourse;
 import org.java.behave.db.domain.BehaveUser;
 import org.java.behave.db.domain.BehaveUserExample;
 import org.java.behave.db.domain.UserVo;
@@ -10,6 +11,7 @@ import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import javax.swing.plaf.basic.BasicHTML;
+import java.sql.Struct;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -101,6 +103,18 @@ public class BehaveUserService {
         return userMapper.selectByExample(example);
     }
 
+    public BehaveUser queryByPassAndMobile(String password,String mobile){
+        BehaveUserExample example = new BehaveUserExample();
+        BehaveUserExample.Criteria criteria = example.createCriteria();
+        if (StringUtils.isEmpty(mobile)|| StringUtils.isEmpty(password))
+            return null;
+        if (!StringUtils.isEmpty(mobile)) {
+            criteria.andMobileEqualTo(mobile);
+        }
+        List<BehaveUser>users=userMapper.selectByExample(example);
+        if(users==null||users.size()>1) return null;
+        return users.get(0);
+    }
     public List<BehaveUser> queryByNameOrMobile(String name,String mobile){
         BehaveUserExample example = new BehaveUserExample();
         BehaveUserExample.Criteria criteria = example.createCriteria();
