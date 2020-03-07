@@ -158,6 +158,7 @@ public class AdminScoreController {
         style.setBorderLeft(BorderStyle.THIN);
         style.setBorderRight(BorderStyle.THIN);
         style.setBorderTop(BorderStyle.THIN);
+        style.setFillForegroundColor(IndexedColors.WHITE.getIndex());
         return style;
     }
     private CellStyle styleTwo(HSSFWorkbook wb){
