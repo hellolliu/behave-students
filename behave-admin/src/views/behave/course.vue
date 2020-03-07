@@ -258,8 +258,9 @@
 
 
       handleDownload(row) {
+        console.log(this.teacher,row)
         this.$confirm('您确定导出课程："'+row.name+'"的学生成绩吗？').then(e => {
-          exportExcel({teacherid:8,courseid:8}).then((res) => {
+          exportExcel({teacherid:this.teacher.id,courseid:row.id}).then((res) => {
             if (res){
               this.initExcel(res)
             }
