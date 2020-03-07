@@ -83,6 +83,15 @@ Page({
     }
 
   },
+  teacherDetail(options){
+    console.log(options)
+    let index=options.target.dataset.index
+    let answer=this.data.userAnswers[index]
+    let answerString=JSON.stringify(answer)
+    wx.navigateTo({
+      url: './details?answer='+answerString,
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

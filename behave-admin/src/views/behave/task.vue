@@ -288,14 +288,15 @@
         this.listLoading = true
         listTask(this.listQuery)
           .then(response => {
-            this.list = response.data.data.teacherQuestions.data.list
-            this.total = response.data.data.teacherQuestions.data.total
-            this.listLoading = false
-            this.itemstable=false
-            let user= response.data.data.user
-            if (user !=null&&user.id!=null){
-              this.teacherid=user.id
-            }
+              this.list = response.data.data.teacherQuestions.data.list
+              this.total = response.data.data.teacherQuestions.data.total
+              this.listLoading = false
+              this.itemstable=false
+              let user= response.data.data.user
+              if (user !=null&&user.id!=null){
+                this.teacherid=user.id
+                this.teachername=user.username
+              }
           }).catch(() => {
             this.list = []
             this.total = 0

@@ -126,8 +126,6 @@ public class WxTeacherController {
     public Object teacherAddScore(@RequestBody UserScoreVO userScoreVO){
         if (userScoreVO.getUserAnswer().getQuestionClassId()==null||userScoreVO.getTeacherId()==null||userScoreVO.getScore()==null)
             return ResponseUtil.badArgument();
-        userScoreVO.getUserAnswer().setStatus(userAnswerService.FINISH);
-        userAnswerService.update(userScoreVO.getUserAnswer());
         BehaveQuestionClass questionClass=questionClassService.findById(userScoreVO.getUserAnswer().getQuestionClassId());
         BehaveUserScore userScore=new BehaveUserScore();
         userScore.setQuestionId(questionClass.getQuestionId());
@@ -137,6 +135,9 @@ public class WxTeacherController {
         userScore.setUserName(userScoreVO.getUserAnswer().getStudentName());
         userScore.setValue(Integer.valueOf(userScoreVO.getScore()));
         userScoreService.addAnswer(userScore);
+        userScoreVO.getUserAnswer().setScore(userScore.getValue());
+        userScoreVO.getUserAnswer().setStatus(userAnswerService.FINISH);
+        userAnswerService.update(userScoreVO.getUserAnswer());
         return ResponseUtil.ok();
     }
     @GetMapping("teacherQueryScore")

@@ -7,6 +7,8 @@
     "pages/behave/teacher/task/add",
     "pages/behave/teacher/curriculum/index",
     "pages/behave/teacher/studentwork/index",
+    "pages/behave/teacher/studentwork/update",
+    "pages/behave/teacher/studentwork/details",
     "pages/behave/student/index",
     "pages/behave/student/exercise/index",
     "pages/behave/student/exercise/answer",

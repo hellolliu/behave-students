@@ -49,8 +49,8 @@ public class AdminTaskController {
             return ResponseUtil.fail();
         }
         BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
-        String enPass=encoder.encode(username);
-        if(!encoder.matches(user.getPassword(),enPass))
+//        String enPass=encoder.encode(username);
+        if(!encoder.matches(username,user.getPassword()))
             return ResponseUtil.fail();
         List<BehaveTeacherQuestion> teacherQuestions = teacherQuestionService.querySelective(user.getId(), page, limit, sort, order);
         Map<String,Object> re=new HashedMap();

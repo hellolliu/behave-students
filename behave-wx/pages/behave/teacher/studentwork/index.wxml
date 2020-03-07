@@ -5,7 +5,7 @@
     <view class='kcap-list-border' >
       <view class='kcap-list-item' wx:for="{{userAnswers}}" wx:key="index">
         <view class='kcap-class'>
-         <text class="zy-title">{{item.studentName}}</text> 
+         <text class="zy-title" data-index="{{index}}" bindtap="teacherDetail">{{item.studentName}}</text> 
          <text class='kcap-time'>({{item.addTime}})</text>
          <text class='kcap-status {{item.status!=1?"take_over":""}}' bindtap="teacherCorrect" data-index="{{index}}">批改</text>
         </view>  
