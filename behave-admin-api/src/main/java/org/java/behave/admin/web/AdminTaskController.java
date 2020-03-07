@@ -4,6 +4,7 @@ import org.apache.commons.collections.map.HashedMap;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.java.behave.admin.annotation.RequiresPermissionsDesc;
 import org.java.behave.core.util.ResponseUtil;
+import org.java.behave.core.util.bcrypt.BCryptPasswordEncoder;
 import org.java.behave.core.validator.Order;
 import org.java.behave.core.validator.Sort;
 import org.java.behave.db.domain.BehaveQuestionItem;
@@ -43,11 +44,15 @@ public class AdminTaskController {
                        @RequestParam(defaultValue = "10") Integer limit,
                        @Sort @RequestParam(defaultValue = "add_time") String sort,
                        @Order @RequestParam(defaultValue = "desc") String order) {
-        List<BehaveUser> user=userService.queryByNameOrMobile(username,mobile);
-        if (user==null|| user.size()<1){
+        BehaveUser user=userService.queryByPassAndMobile(username,mobile);
+        if (user==null){
             return ResponseUtil.fail();
         }
-        List<BehaveTeacherQuestion> teacherQuestions = teacherQuestionService.querySelective(user.get(0).getId(), page, limit, sort, order);
+        BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
+        String enPass=encoder.encode(username);
+        if(!encoder.matches(user.getPassword(),enPass))
+            return ResponseUtil.fail();
+        List<BehaveTeacherQuestion> teacherQuestions = teacherQuestionService.querySelective(user.getId(), page, limit, sort, order);
         Map<String,Object> re=new HashedMap();
         re.put("user",user);
         re.put("teacherQuestions", ResponseUtil.okList(teacherQuestions));
