@@ -54,16 +54,13 @@ public class AdminCourseController {
                        @RequestParam(defaultValue = "10") Integer limit,
                        @Sort @RequestParam(defaultValue = "add_time") String sort,
                        @Order @RequestParam(defaultValue = "desc") String order) {
-        BehaveUser users= userService.queryByPassAndMobile(username,mobile);
-        if (users==null)
-            return ResponseUtil.fail(USER_MOBILE_EXIST,"账号或密码错误");
-        BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
-        String encpass=encoder.encode(username);
-        if (!encoder.matches(username,encpass))  return ResponseUtil.fail(USER_MOBILE_EXIST,"账号或密码错误");
-        List<BehaveCourse> adminList = courseService.querySelective(users.getId(), page, limit, sort, order);
+        List<BehaveUser> users= userService.queryByNameOrMobile(username,mobile);
+        if (users==null||users.size()==0)
+            return ResponseUtil.fail(USER_MOBILE_EXIST,"没有查到该教师");
+        List<BehaveCourse> adminList = courseService.querySelective(username,mobile, page, limit, sort, order);
         Object listObj=ResponseUtil.okList(adminList);
         Map<String ,Object> map=new HashedMap();
-        map.put("teacher",users);
+        map.put("teacher",users.get(0));
         map.put("adminList",listObj);
         return ResponseUtil.ok(map);
     }
