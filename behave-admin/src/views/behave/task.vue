@@ -293,8 +293,8 @@
             this.listLoading = false
             this.itemstable=false
             let user= response.data.data.user
-            if (user !=null&&user.length!=0){
-              this.teacherid=user[0].id
+            if (user !=null&&user.id!=null){
+              this.teacherid=user.id
             }
           }).catch(() => {
             this.list = []
