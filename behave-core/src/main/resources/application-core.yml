@@ -3,12 +3,12 @@ behave:
   wx:
     app-id: wx8cce7a91f37c2db5
     app-secret: c33231ba68e44998b15d2c3f8f4868c9
-    mch-id: 1501705361
-    mch-key: 12sichuangjituan20180418apimiyue
-    notify-url: https://ygl.stronginfo.com:8081/wx/order/pay-notify
+    mch-id:
+    mch-key:
+    notify-url:
     # 商户证书文件路径
     # 请参考“商户证书”一节 https:s//pay.weixin.qq.com/wiki/doc/api/wxa/wxa_api.php?chapter=4_3
-    key-path: D:\yigongli\apiclient_cert.p12
+    key-path:
     #获取小程序全局唯一后台接口调用凭据（access_token）。
     #调调用绝大多数后台接口时都需使用 access_token，开发者需要进行妥善保存。
     access_token:
@@ -97,7 +97,7 @@ behave:
     local:
       storagePath: storage
       # 这个地方应该是wx模块的WxStorageController的fetch方法对应的地址
-      address: https://ygl.stronginfo.com:8081/storage/
+      address:
 #      address: http://172.31.3.114:8080/wx/storage/fetch/
     # 阿里云对象存储配置信息
     aliyun:
