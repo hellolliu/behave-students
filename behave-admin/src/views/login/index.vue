@@ -20,7 +20,9 @@
 
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">登录</el-button>
     </el-form>
-
+    <div class="copyright">
+      Copyright © 2020 xxx.com 版权所有 <a href="">沪ICP备xxx号</a>
+    </div>
   </div>
 </template>
 

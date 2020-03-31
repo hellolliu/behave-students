@@ -27,7 +27,7 @@
   filter:alpha(opacity=100);
 }
 .bottom-view{
-  position: absolute;
+  position: fixed;
   bottom: 10rpx;
 }
 .bottom-botton-random{

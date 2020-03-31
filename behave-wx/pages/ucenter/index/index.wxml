@@ -65,6 +65,7 @@
         <image class='user_column_item_image' src='/static/images/send.png'></image>
         <view class='user_column_item_text'>我的课程表</view>
       </view>
+       <view class='user_column_item'></view>
     </view>
   </view>
    

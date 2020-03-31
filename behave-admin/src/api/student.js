@@ -15,3 +15,10 @@ export function readStudent(data) {
     params:data
   })
 }
+export function deleteStudent(data) {
+  return request({
+    url: '/student/deleted',
+    method: 'post',
+    data
+  })
+}

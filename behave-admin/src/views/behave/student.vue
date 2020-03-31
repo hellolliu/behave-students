@@ -31,6 +31,7 @@
       <el-table-column align="center" label="操作" width="200" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button v-permission="['GET /admin/student/read']" type="primary" size="mini" @click="handleQuery(scope.row)">查询</el-button>
+          <el-button v-permission="['GET /admin/student/read']" size="mini" type="danger" @click="handleDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
 
@@ -79,7 +80,7 @@
 </style>
 
 <script>
-  import { listStudent,readStudent } from '@/api/student'
+  import { listStudent,readStudent,deleteStudent } from '@/api/student'
   import { getToken } from '@/utils/auth'
   import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
 
@@ -170,6 +171,23 @@
         this.$nextTick(() => {
           this.$refs['dataForm'].clearValidate()
         })
+      },
+      handleDelete(row) {
+        deleteStudent(row)
+          .then(response => {
+            this.$notify.success({
+              title: '成功',
+              message: '删除学生成功'
+            })
+            const index = this.list.indexOf(row)
+            this.list.splice(index, 1)
+          })
+          .catch(response => {
+            this.$notify.error({
+              title: '失败',
+              message: response.data.errmsg
+            })
+          })
       },
       handleDownload(row) {
         console.log(row)

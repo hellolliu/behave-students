@@ -5,7 +5,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-const name = '爱学习' // page title
+const name = '课小助' // page title
 
 // If your port is set to 80,
 // use administrator privileges to execute the command line.
@@ -29,7 +29,8 @@ module.exports = {
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
   devServer: {
-    port: port
+    port: port,
+    disableHostCheck: true,
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that

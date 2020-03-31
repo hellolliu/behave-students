@@ -43,9 +43,6 @@ public class BehaveUserAnswerService {
         LocalDateTime endDateTime=
                 LocalDateTime.parse(endTime+" 24:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         example.or().andStudentIdEqualTo(studentId).andAddTimeBetween(startDateTime,endDateTime).andDeletedEqualTo(false);
-        BehaveUserAnswerExample.Criteria ca=example.or();
-
-        ca.andDeletedEqualTo(false);
         return userAnswerMapper.selectByExample(example);
     }
 

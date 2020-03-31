@@ -7,15 +7,14 @@ import org.java.behave.core.util.ResponseUtil;
 import org.java.behave.core.validator.Order;
 import org.java.behave.core.validator.Sort;
 import org.java.behave.db.domain.BehaveClass;
+import org.java.behave.db.domain.BehaveQuestionItem;
+import org.java.behave.db.domain.BehaveTeacherQuestion;
 import org.java.behave.db.domain.BehaveUser;
 import org.java.behave.db.service.BehaveClassService;
 import org.java.behave.db.service.BehaveUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -57,5 +56,16 @@ public class AdminStudentController {
             behaveClass=new BehaveClass();
         objectMap.put("studentClass",behaveClass);
         return ResponseUtil.ok(objectMap);
+    }
+    @RequiresPermissions("admin:student:read")
+    @RequiresPermissionsDesc(menu = {"功能中心", "学生管理"}, button = "删除")
+    @PostMapping("/deleted")
+    public Object deleted(@RequestBody BehaveUser user) {
+        Integer id = user.getId();
+        if (id == null) {
+            return ResponseUtil.badArgument();
+        }
+        userService.deleteById(id);
+        return ResponseUtil.ok();
     }
 }
