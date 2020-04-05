@@ -22,3 +22,10 @@ export function deleteStudent(data) {
     data
   })
 }
+export function updateStudent(data) {
+  return request({
+    url: '/student/update',
+    method: 'post',
+    data
+  })
+}

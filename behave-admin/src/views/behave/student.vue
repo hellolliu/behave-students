@@ -30,7 +30,7 @@
 
       <el-table-column align="center" label="操作" width="200" class-name="small-padding fixed-width">
         <template slot-scope="scope">
-          <el-button v-permission="['GET /admin/student/read']" type="primary" size="mini" @click="handleQuery(scope.row)">查询</el-button>
+          <el-button v-permission="['GET /admin/student/read']" type="primary" size="mini" @click="handleQuery(scope.row)">更新</el-button>
           <el-button v-permission="['GET /admin/student/read']" size="mini" type="danger" @click="handleDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
@@ -43,11 +43,18 @@
     <el-dialog :visible.sync="queryDialogVisible" title="其他信息">
       <el-form ref="dataForm" :model="dataForm" status-icon label-position="left" label-width="100px" style="width: 400px; margin-left:50px;">
         <el-form-item label="班级" prop="name">
-          <el-input v-model="dataForm.className" :disabled="true"/>
+          <el-cascader expand-trigger="hover"
+                       :options="gradeUnitData"
+                       v-model="dataForm.class"
+                       :props="defaultProps"
+                       @change="gradeUnitChange"
+                       placeholder="班级" class="filter-item" style="width: 200px;">
+          </el-cascader>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="queryDialogVisible = false">确定</el-button>
+        <el-button @click="queryDialogVisible = false">取消</el-button>
+        <el-button type="primary" @click="updateData">确定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -80,10 +87,10 @@
 </style>
 
 <script>
-  import { listStudent,readStudent,deleteStudent } from '@/api/student'
+  import { listStudent,readStudent,deleteStudent ,updateStudent} from '@/api/student'
   import { getToken } from '@/utils/auth'
-  import Pagination from '@/components/Pagination' // Secondary package based on el-pagination
-
+  import Pagination from '@/components/Pagination' // Secondary package based on el-paginatio
+  import { queryClassAll} from '@/api/schedule'
   export default {
     name: 'student',
     components: { Pagination },
@@ -100,8 +107,14 @@
           sort: 'add_time',
           order: 'desc'
         },
+        defaultProps: {
+          value: 'id',
+          label: 'name'
+        },//默认节点名与数据绑定
         dataForm: {
+          id:undefined,
           studentId: undefined,
+          classId:undefined,
           className: ''
         },
         dialogFormVisible: false,
@@ -109,6 +122,7 @@
         downloadLoading: false,
         queryDialogVisible:false,
         genderDic: ['未知', '男', '女'],
+        gradeUnitData:[]
       }
     },
     computed: {
@@ -119,7 +133,14 @@
       }
     },
     created() {
-      this.getList()
+      this.getList();
+      //获取班级信息
+      queryClassAll().then(response=>{
+//          gradeUnitData
+        this.gradeUnitData=response.data.data.list
+      }).catch(()=>{
+        this.gradeUnitData=[]
+      })
     },
     methods: {
 
@@ -155,10 +176,8 @@
               this.$notify.error({title: '失败', message: "学生班级信息丢失"})
               studentClass={name: ""}
             }
-            this.dataForm= {
-              studentId: student.id,
-              className: studentClass.name
-            }
+            this.dataForm= student
+            this.dataForm.class=[studentClass.id]
           }).catch(()=>{
             this.$notify.error({
               title: '失败',
@@ -191,7 +210,40 @@
       },
       handleDownload(row) {
         console.log(row)
-      }
+      },
+      updateData() {
+        this.$refs['dataForm'].validate(valid => {
+          if (valid) {
+            updateStudent(this.dataForm)
+              .then(() => {
+                for (const v of this.list) {
+                  if (v.id === this.dataForm.id) {
+                    const index = this.list.indexOf(v)
+                    this.list.splice(index, 1, this.dataForm)
+                    break
+                  }
+                }
+                this.dialogFormVisible = false
+                this.$notify.success({
+                  title: '成功',
+                  message: '更新成功'
+                })
+              })
+              .catch(response => {
+                this.$notify.error({
+                  title: '失败',
+                  message: response.data.errmsg
+                })
+              })
+            this.queryDialogVisible = false
+          }
+        })
+      },
+      //班级
+      gradeUnitChange(val){
+        this.dataForm.classId=val[val.length-1];
+        console.log("this.dataForm.classId",this.dataForm.classId)
+      },
     }
   }
 </script>

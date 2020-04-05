@@ -68,4 +68,22 @@ public class AdminStudentController {
         userService.deleteById(id);
         return ResponseUtil.ok();
     }
+    @RequiresPermissionsDesc(menu = {"功能中心", "学生管理"}, button = "编辑")
+    @PostMapping("/update")
+    public Object update(@RequestBody BehaveUser user) {
+         if(user==null){
+             return ResponseUtil.fail();
+         }
+        Integer anotherAdminId = user.getId();
+        if (anotherAdminId == null) {
+            return ResponseUtil.badArgument();
+        }
+
+        if (userService.updateById(user) == 0) {
+            return ResponseUtil.updatedDataFailed();
+        }
+
+        return ResponseUtil.ok(user);
+    }
+
 }
