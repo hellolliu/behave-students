@@ -30,7 +30,7 @@
 
       <el-table-column align="center" label="操作" width="200" class-name="small-padding fixed-width">
         <template slot-scope="scope">
-          <el-button v-permission="['GET /admin/student/read']" type="primary" size="mini" @click="handleQuery(scope.row)">更新</el-button>
+          <el-button v-permission="['GET /admin/student/read']" type="primary" size="mini" @click="handleQuery(scope.row)">编辑</el-button>
           <el-button v-permission="['GET /admin/student/read']" size="mini" type="danger" @click="handleDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
