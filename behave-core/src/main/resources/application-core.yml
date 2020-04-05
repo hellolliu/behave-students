@@ -1,8 +1,11 @@
 behave:
   # 开发者应该设置成自己的wx相关信息
   wx:
-    app-id: wx8cce7a91f37c2db5
-    app-secret: c33231ba68e44998b15d2c3f8f4868c9
+#    app-id: wx8cce7a91f37c2db5
+#    app-secret: 27de38e1a6c11df8159879e36db9d22e
+    app-id: wx12de4bf9a4b2d8ef
+    app-secret: 3e158a0d2634dab29531885806c302d0
+
     mch-id:
     mch-key:
     notify-url:
